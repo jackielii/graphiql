@@ -220,6 +220,7 @@ export class GraphiQL extends React.Component {
     // Try the stock introspection query first, falling back on the
     // sans-subscriptions query for services which do not yet support it.
     fetcher({ query: introspectionQuery })
+      .then(result => result) // TODO if result.error contains Field subscriptionType is undefined
       .catch(() => fetcher({ query: introspectionQuerySansSubscriptions }))
       .then(result => {
         // If a schema was provided while this fetch was underway, then
